@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmová úvodní stránka</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #e8f5e9 url('https://www.toptal.com/designers/subtlepatterns/patterns/memphis-mini-dark.png'); /* Světle zelené pozadí s vzorem */
+            background-size: cover; /* Zajištění, že vzor pokryje celou stránku */
+        }
+        h1 {
+            font-family: 'Arial', sans-serif;
+            font-size: 3rem;
+            color: #004d00;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .table {
+            background-color: #006400; /* Tmavě zelené pozadí tabulky */
+            color: white;
+            font-size: 1.25rem;
+        }
+        .table th,
+        .table td {
+            border-color: #ffffff; /* Bílé ohraničení buněk */
+            padding: 20px; /* Větší mezery mezi buňkami */
+        }
+        .table a {
+            color: #ffffff; /* Bílé odkazy */
+            text-decoration: none; /* Odstranění podtržení */
+        }
+        .table a:hover {
+            color: #008700; /* Zelené odkazy při hover */
+        }
+        .table tbody tr:hover {
+            background-color: #004d00; /* Tmavší zelené pozadí při hover */
+        }
+        .container {
+            max-width: 1200px; /* Širší kontejner pro větší tabulku */
+            margin: auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Seznam filmů</h1>
+        <table class="table table-bordered table-hover mt-4">
+            <thead>
+                <tr>
+                    <th>Název filmu</th>
+                    <th>Datum vydání</th>
+                    <th>Autor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for film in films %}
+                    <tr>
+                        <td><a href="{% url 'film_detail' film.id %}">{{ film.title }}</a></td>
+                        <td>{{ film.release_date|date:"d.m.Y" }}</td>
+                        <td><a href="{% url 'author_detail' film.author.id %}">{{ film.author.name }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

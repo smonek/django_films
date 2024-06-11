@@ -3,7 +3,7 @@ from .models import Film, Author
 
 def home(request):
     films = Film.objects.all()
-    return render(request, 'home.html', {'films': films})
+    return render(request, 'index.html', {'films': films})
 def film_detail(request, film_id):
     film = Film.objects.get(id=film_id)
     return render(request, 'film_detail.html', {'film': film})

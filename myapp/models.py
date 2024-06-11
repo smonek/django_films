@@ -12,6 +12,7 @@ class Author(models.Model):
 class Film(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
+    genre = models.CharField(max_length=100, null=True)
     release_date = models.DateField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
 

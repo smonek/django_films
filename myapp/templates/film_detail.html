@@ -43,6 +43,8 @@
         <div class="card mt-4">
             <h2>O filmu</h2>
             <p>{{ film.description }}</p>
+            <h3>Žánr</h3>
+            <p>{{ film.genre }}</p>
             <h3>Autor</h3>
             <p><a href="{% url 'author_detail' film.author.id %}">{{ film.author.name }}</a></p>
             <h4>Datum vydání</h4>

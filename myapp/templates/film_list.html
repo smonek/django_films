@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmová úvodní stránka</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e8f5e9;
+        }
+        h1 {
+            font-family: 'Arial', sans-serif;
+            font-size: 3rem;
+            color: #004d00;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .table {
+            background-color: #006400;
+            color: white;
+            font-size: 1.25rem;
+        }
+        .table th,
+        .table td {
+            border-color: #ffffff;
+            padding: 20px;
+        }
+        .table a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .table a:hover {
+            color: #008700;
+        }
+        .table tbody tr:hover {
+            background-color: #004d00;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Seznam filmů</h1>
+        <table class="table table-bordered table-hover mt-4">
+            <thead>
+                <tr>
+                    <th>Název filmu</th>
+                    <th>Datum vydání</th>
+                    <th>Autor</th>
+                    <th>Žánr</th>
+                    <th>Hodnocení</th>
+                    <th>Výdělek</th>
+                    <th>Akce</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for film in films %}
+                    <tr>
+                        <td><a href="{% url 'film_detail' film.id %}">{{ film.title }}</a></td>
+                        <td>{{ film.release_date }}</td>
+                        <td><a href="{% url 'author_detail' film.author.id %}">{{ film.author.name }}</a></td>
+                        <td>{{ film.genre }}</td>
+                        <td>{{ film.rating }}</td>
+                        <td>${{ film.earnings }}</td>
+                        <td>
+                            <a href="{% url 'film_edit' film.id %}" class="btn btn-warning btn-sm">Upravit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
